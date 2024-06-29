@@ -4,10 +4,10 @@ const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const cookieParser = require('cookie-parser');
-
 const connectDB = require('./config/connectDB');
-const authRoutes = require('./routes/Auth.route')
 
+const authRoutes = require('./routes/Auth.route')
+const userRoutes = require('./routes/User.route');
 
 const app = express();
 
@@ -24,7 +24,7 @@ app.use(cors({
 })); // Enable CORS for all routes
 
 app.use('/api/v1/auth', authRoutes);
-
+app.use('/api/v1/user', userRoutes);
 
 app.get("/", (req, res) => {
   res.send("Hello, World!");
