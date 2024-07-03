@@ -36,15 +36,15 @@ export default function RegisterPage() {
         },
         body: JSON.stringify(formData),
       })
-      // const data = await response.json();
+      const data = await response.json();
       if (response.ok) {
-        toast.success('Registration successful! You can now login.');
+        toast.success(data.message);
         navigate('/login');
         setFormData({});
       }
     } catch (e) {
       console.log(e);
-      toast.error('Registration failed. Please try again.');
+      toast.error(data.message);
     }
   }
 
