@@ -1,9 +1,46 @@
 
-
+import { Route, Routes } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Home from "./pages/Home";
+import RegisterPage from "./pages/RegisterPage";
+import Login from "./pages/Login";
+import Message from "./components/Message";
+import AuthLayout from './layout'
 function App() {
+
+  const routes = (
+    <Routes>
+      <Route
+        path="/"
+        element={<Home />}
+      >
+        <Route path=":userId" element={<Message />} />
+      </Route>
+
+      <Route path="/login" element={<AuthLayout><Login /></AuthLayout>} />
+      <Route path="/register" element={<AuthLayout><RegisterPage /></AuthLayout>} />
+    </Routes>
+  );
+
   return (
     <>
-      <p className="text-3xl">hello</p>
+      <div>
+        {routes}
+      </div>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        transition:Bounce
+      />
     </>
   )
 }
