@@ -4,8 +4,12 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { setUser } from '../redux/userSlice';
+import { useDispatch } from 'react-redux';
+
 export default function Login() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({});
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -21,8 +25,9 @@ export default function Login() {
         body: JSON.stringify(formData),
       })
       const data = await response.json();
-      console.log(data)
+      console.log(data);
       if (response.ok) {
+        dispatch(setUser(data?.data));
         toast.success(data.message);
         navigate('/');
         setFormData({});

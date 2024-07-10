@@ -7,17 +7,20 @@ import RegisterPage from "./pages/RegisterPage";
 import Login from "./pages/Login";
 import Message from "./components/Message";
 import AuthLayout from './layout'
+import PrivateRoute from "./components/PrivateRoute";
 function App() {
 
   const routes = (
     <Routes>
-      <Route
-        path="/"
-        element={<Home />}
-      >
-        <Route path=":userId" element={<Message />} />
-      </Route>
+      <Route element={<PrivateRoute />}>
+        <Route
+          path="/"
+          element={<Home />}
+        >
+          <Route path=":userId" element={<Message />} />
+        </Route>
 
+      </Route>
       <Route path="/login" element={<AuthLayout><Login /></AuthLayout>} />
       <Route path="/register" element={<AuthLayout><RegisterPage /></AuthLayout>} />
     </Routes>

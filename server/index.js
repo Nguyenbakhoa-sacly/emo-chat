@@ -18,10 +18,10 @@ app.use(express.json());
 const port = process.env.PORT || 8081
 
 app.use(cors({
-  origin: '*', // Allow all origins
-  credentials: true, // Send cookies when making requests
-  methods: ['GET', 'POST', 'PUT', 'DELETE'] // Enable specific HTTP methods
-})); // Enable CORS for all routes
+  origin: "http://localhost:5173",
+  credentials: true,
+  optionsSuccessStatus: 200,
+}));
 
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/user', userRoutes);
